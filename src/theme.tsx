@@ -1,16 +1,10 @@
 import { createTheme } from "@mui/material";
 import { createContext, useMemo, useState } from "react";
 
-// First We Should make color desgin tokens
-// #666666
-// #141b2d => Primary Color
-// #4cceac => Green accent
-// #db4f4a => Red accent
-// #6870fa => Blue accent
 export const tokens = ({ mode }: { mode: "dark" | "light" }) => {
   return mode === "dark"
     ? {
-        gray: {
+        grey: {
           100: "#e0e0e0",
           200: "#c2c2c2",
           300: "#a3a3a3",
@@ -25,7 +19,7 @@ export const tokens = ({ mode }: { mode: "dark" | "light" }) => {
           100: "#d0d1d5",
           200: "#a1a4ab",
           300: "#727681",
-          400: "#434957",
+          400: "#1F2A40",
           500: "#141b2d",
           600: "#101624",
           700: "#0c101b",
@@ -67,7 +61,7 @@ export const tokens = ({ mode }: { mode: "dark" | "light" }) => {
         },
       }
     : {
-        gray: {
+        grey: {
           100: "#141414",
           200: "#292929",
           300: "#3d3d3d",
@@ -82,9 +76,9 @@ export const tokens = ({ mode }: { mode: "dark" | "light" }) => {
           100: "#040509",
           200: "#080b12",
           300: "#0c101b",
-          400: "#f2f0f0",
+          400: "#f2f0f0", // manually changed
           500: "#141b2d",
-          600: "#434957",
+          600: "#1F2A40",
           700: "#727681",
           800: "#a1a4ab",
           900: "#d0d1d5",
@@ -126,11 +120,18 @@ export const tokens = ({ mode }: { mode: "dark" | "light" }) => {
 };
 
 // MUI Theme Settings
-export const themeSettings = ({ mode }: { mode: "dark" | "light" }) => {
+export const themeSettings = ({
+  mode,
+  direction,
+}: {
+  mode: "dark" | "light";
+  direction: "ltr" | "rtl";
+}) => {
   const colors = tokens({ mode });
 
   // This Object Is An MUI Setting Object
   return {
+    direction, // Add direction to theme
     palette: {
       mode,
       ...(mode === "dark"
@@ -141,10 +142,10 @@ export const themeSettings = ({ mode }: { mode: "dark" | "light" }) => {
             secondary: {
               main: colors.greenAccent[500],
             },
-            neutural: {
-              dark: colors.gray[700],
-              main: colors.gray[500],
-              light: colors.gray[100],
+            neutral: {
+              dark: colors.grey[700],
+              main: colors.grey[500],
+              light: colors.grey[100],
             },
             background: {
               default: colors.primary[500],
@@ -157,10 +158,10 @@ export const themeSettings = ({ mode }: { mode: "dark" | "light" }) => {
             secondary: {
               main: colors.greenAccent[500],
             },
-            neutural: {
-              dark: colors.gray[700],
-              main: colors.gray[500],
-              light: colors.gray[100],
+            neutral: {
+              dark: colors.grey[700],
+              main: colors.grey[500],
+              light: colors.grey[100],
             },
             background: {
               default: "#fcfcfc",
@@ -197,29 +198,41 @@ export const themeSettings = ({ mode }: { mode: "dark" | "light" }) => {
     },
   };
 };
+
 // Make React Context For Entire Application
 interface IColorContext {
   toggleColorMode: () => void;
+  toggleDirection: () => void;
+  direction: "ltr" | "rtl";
 }
 
 // Export the context so it can be used in App.tsx
 export const ColorModeContext = createContext<IColorContext>({
   toggleColorMode() {},
+  toggleDirection() {},
+  direction: "ltr",
 });
 
-// Create a simple hook that returns both theme and colorMode
+// Create a simple hook that returns both theme and colorMode with direction support
 export const useMode = () => {
   const [mode, setMode] = useState<"dark" | "light">("dark");
+  const [direction, setDirection] = useState<"ltr" | "rtl">("ltr");
 
   const colorMode = useMemo(
     () => ({
       toggleColorMode: () =>
         setMode((prev) => (prev === "light" ? "dark" : "light")),
+      toggleDirection: () =>
+        setDirection((prev) => (prev === "ltr" ? "rtl" : "ltr")),
+      direction,
     }),
-    []
+    [direction]
   );
 
-  const theme = useMemo(() => createTheme(themeSettings({ mode })), [mode]);
+  const theme = useMemo(
+    () => createTheme(themeSettings({ mode, direction })),
+    [mode, direction]
+  );
 
   return [theme, colorMode] as const; // Return as tuple
 };
