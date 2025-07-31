@@ -1,7 +1,3 @@
-/* eslint-disable react-refresh/only-export-components */
-// import { createContext, useState, useMemo } from "react";
-// import { createTheme } from "@mui/material";
-
 import { createTheme } from "@mui/material";
 import { createContext, useMemo, useState } from "react";
 
@@ -11,7 +7,6 @@ import { createContext, useMemo, useState } from "react";
 // #4cceac => Green accent
 // #db4f4a => Red accent
 // #6870fa => Blue accent
-// eslint-disable-next-line react-refresh/only-export-components
 export const tokens = ({ mode }: { mode: "dark" | "light" }) => {
   return mode === "dark"
     ? {
