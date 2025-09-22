@@ -38,3 +38,7 @@ body,
 /* .ps-sidebar-container {
   background-color: red !important;
 } */
+button {
+  cursor: pointer;
+  font-family: "Source Sans 3", sans-serif;
+}

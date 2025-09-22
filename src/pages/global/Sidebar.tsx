@@ -182,7 +182,7 @@ const MySidebar = ({
             <img
               src="/images/avatar.svg"
               alt="Sidebar Avatar"
-              style={{ width: 80, height: 80, borderRadius: "50%" }}
+              style={{ width: 60, height: 60, borderRadius: "50%" }}
             />
           </Box>
           <Box mt={1}>
