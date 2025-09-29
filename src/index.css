@@ -42,3 +42,8 @@ button {
   cursor: pointer;
   font-family: "Source Sans 3", sans-serif;
 }
+
+[data-theme="dark"]
+  .MuiDataGrid-panelWrapper.muiltr-1kd80d6-MuiDataGrid-panelWrapper {
+  background-color: #535ac8 !important;
+}

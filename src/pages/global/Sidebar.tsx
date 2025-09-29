@@ -44,11 +44,6 @@ const menuItems = [
         icon: <ContactsOutlinedIcon />,
         to: "/contacts",
       },
-      {
-        title: "Invoices Balances",
-        icon: <ReceiptOutlinedIcon />,
-        to: "/form",
-      },
     ],
   },
   {
@@ -57,19 +52,9 @@ const menuItems = [
     defaultOpen: true,
     children: [
       {
-        title: "Profile Form",
-        icon: <PersonOutlinedIcon />,
-        to: "/form",
-      },
-      {
         title: "Calendar",
         icon: <CalendarTodayOutlinedIcon />,
         to: "/calendar",
-      },
-      {
-        title: "FAQ Page",
-        icon: <HelpOutlineOutlinedIcon />,
-        to: "/faq",
       },
     ],
   },
@@ -117,7 +102,7 @@ const MySidebar = ({
   const [selected, setSelected] = useState("Dashboard");
 
   return (
-    <Box>
+    <Box sx={{}}>
       <Sidebar
         collapsed={collapsed}
         breakPoint="md"

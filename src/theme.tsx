@@ -220,13 +220,19 @@ export const useMode = () => {
 
   const colorMode = useMemo(
     () => ({
-      toggleColorMode: () =>
-        setMode((prev) => (prev === "light" ? "dark" : "light")),
+      toggleColorMode: () => {
+        setMode((prev) => (prev === "light" ? "dark" : "light"));
+        document.documentElement.setAttribute(
+          "data-theme",
+          mode === "light" ? "dark" : "light"
+        );
+      },
+
       toggleDirection: () =>
         setDirection((prev) => (prev === "ltr" ? "rtl" : "ltr")),
       direction,
     }),
-    [direction]
+    [direction, mode]
   );
 
   const theme = useMemo(
