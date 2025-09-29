@@ -1,15 +1,15 @@
-import { Box, flex, useTheme } from "@mui/system";
-import type { ReactNode } from "react";
+import { Box, useTheme } from "@mui/system";
+// import type { ReactNode } from "react";
 import { tokens } from "../../theme";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
-import { CircularProgress, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import ProgressCircle from "../ui/ProgressCircle";
-interface IProps {
-  number: string;
-  text: string;
-  percentage: string;
-  icon: ReactNode;
-}
+// interface IProps {
+//   number: string;
+//   text: string;
+//   percentage: string;
+//   icon: ReactNode;
+// }
 const Card = () => {
   const theme = useTheme();
   const colors = tokens({ mode: theme.palette.mode });

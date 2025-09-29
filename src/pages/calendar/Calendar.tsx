@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import {
   type EventApi,
   type DateSelectArg,
-  type EventClickArg,
   type EventContentArg,
 } from "@fullcalendar/core";
 import FullCalendar from "@fullcalendar/react";

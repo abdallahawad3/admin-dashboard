@@ -45,7 +45,7 @@ const StyledQuickFilter = styled(QuickFilter)({
 });
 
 const StyledToolbarButton = styled(ToolbarButton)<{ ownerState: OwnerState }>(
-  ({ theme, ownerState }) => ({
+  ({ ownerState }) => ({
     gridArea: "1 / 1",
     width: "min-content",
     height: "min-content",
@@ -57,7 +57,7 @@ const StyledToolbarButton = styled(ToolbarButton)<{ ownerState: OwnerState }>(
 
 const StyledTextField = styled(TextField)<{
   ownerState: OwnerState;
-}>(({ theme, ownerState }) => ({
+}>(({ ownerState }) => ({
   gridArea: "1 / 1",
   overflowX: "clip",
   width: ownerState.expanded ? 260 : "var(--trigger-width)",
